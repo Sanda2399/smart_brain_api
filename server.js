@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const app = express();
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = require('knex')({
     client: 'pg',
     connection: {
