@@ -5,13 +5,15 @@ const app = express();
 const db = knex({ // for connecting to PostgreSQL
     client: 'pg', // type of db
     connection: { 
-      connectionString: process.env.DATABASE_URL, // dynamic database value for heroku    
-      ssl: {
+    connectionString: process.env.DATABASE_URL, // dynamic database value for heroku    
+    ssl: {
         require: true,
         rejectUnauthorized: false
-      }
     }
-  });
+}
+});
+
+
 const register = require('./Controllers/register');
 const signin = require('./Controllers/signin');
 const profile = require('./Controllers/profile');
