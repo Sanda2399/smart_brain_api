@@ -27,11 +27,9 @@ const handleRegister = (req, res, db, bcrypt) => {
             })
         })
         .then(trx.commit)
-        .catch(err)
+        .catch(console.log)
     })
-    .catch(err => {
-        res.status(400).json(err);
-    })
+    .catch(console.log)
 }
 
 module.exports = {
