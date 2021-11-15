@@ -2,19 +2,29 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const app = express();
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-const db = require('knex')({
-    client: 'pg',
-    connection: {
-      connectionString : process.env.DATABASE_URL,
-      ssl: true
-    }
-});
+const db = require('knex')
 const register = require('./Controllers/register');
 const signin = require('./Controllers/signin');
 const profile = require('./Controllers/profile');
 const image = require('./Controllers/image');
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
 
 ////////// Middleware //////////
 app.use(express.urlencoded({extended: false}));
