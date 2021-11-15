@@ -27,7 +27,7 @@ const handleRegister = (req, res, db, bcrypt) => {
             })
         })
         .then(trx.commit)
-        .catch(console.log)
+        .catch(err)
     })
     .catch(console.log)
 }
