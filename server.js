@@ -2,15 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const app = express();
-const db = require('knex')({
-    client: 'pg',
-    cconnection: {
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-        rejectUnauthorized: false,
-        },
-    },
-});
+const db = knex({ // for connecting to PostgreSQL
+    client: 'pg', // type of db
+    connection: { 
+      connectionString: process.env.DATABASE_URL, // dynamic database value for heroku    
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+  });
 const register = require('./Controllers/register');
 const signin = require('./Controllers/signin');
 const profile = require('./Controllers/profile');
