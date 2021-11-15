@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const app = express();
-const db = knex({ // for connecting to PostgreSQL
+const db = require('knex')({ // for connecting to PostgreSQL
     client: 'pg', // type of db
     connection: { 
     connectionString: process.env.DATABASE_URL, // dynamic database value for heroku    
