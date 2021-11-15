@@ -7,7 +7,7 @@ const db = knex({ // for connecting to PostgreSQL
     connection: { 
     connectionString: process.env.DATABASE_URL, // dynamic database value for heroku    
     ssl: {
-        require: true,
+        require: false,
         rejectUnauthorized: false
     }
 }
