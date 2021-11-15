@@ -7,7 +7,6 @@ const db = require('knex')({
     connection: {
       connectionString : process.env.DATABASE_URL,
       ssl: {
-            require: false,
             rejectUnauthorized: false,
         }
     }
